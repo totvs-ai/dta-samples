@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="PT-BR" class="h-full bg-gray-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo uso de prompt</title>
+    <style>
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+        #loader {
+          animation: spin 1s linear infinite;
+          display: none;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1271A9',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="h-full">
+
+  <div class="min-h-full">
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 flex align-items-center">
+
+          <img src="https://storage.googleapis.com/assets.dta.totvs.ai/logo/dta--anima.svg" width="28" class="inline-block mr-2">
+          
+          <span class="text-primary">Demo DTA</span>
+        </h1>
+      </div>
+    </header>
+    <main>
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div class="space-y-12">
+          <div class="border-b border-gray-900/10 p-8 bg-white rounded-md">
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Produto</h2>
+
+            <p>
+              <span
+                class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm"
+                id="btn-products"
+              ><!-- conteudo criado dinamicamente --></span>
+            </p>
+
+            <p class="mt-4">
+              <textarea name="input" id="input" rows="3" class="block w-full rounded-md border-0 p-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Texto de entrada"></textarea>
+            </p>
+
+            <section class="mt-4">
+              <nav class="flex items-center mt-2">
+                <h4 class="w-24 text-gray-400">Resumo</h4>
+                <ul class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
+                  <li class="flex"><button type="button" onclick="summary('português')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">PT-BR</button></li>
+                  <li class="flex"><button type="button" onclick="summary('português de portugal')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">PT</button></li>
+                  <li class="flex"><button type="button" onclick="summary('inglês')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">EN</button></li>
+                  <li class="flex"><button type="button" onclick="summary('espanhol')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">ES</button></li>
+                  <li class="flex"><button type="button" onclick="summary('francês')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">FR</button></li>
+                </ul>
+              </nav>
+          
+              <nav class="flex items-center mt-2">
+                <h4 class="w-24 text-gray-400">Conteúdo</h4>
+                <ul class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
+                  <li class="flex"><button type="button" onclick="gerar_conteudo('email divulgação')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">Email divulgação PT-BR</button></li>
+                  <li class="flex"><button type="button" onclick="gerar_conteudo('email follow up de lead de vendas')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">Email follow up de lead de vendas PT-BR</button></li>
+                  <li class="flex"><button type="button" onclick="gerar_conteudo('email follow up customer experience')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">Email follow up de CX PT-BR</button></li>
+                  <li class="flex"><button type="button" onclick="gerar_conteudo('post social media', 'espanhol')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">Social media post ES</button></li>
+                  <li class="flex"><button type="button" onclick="gerar_conteudo('texto publicitário')" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">Texto publicitário</button></li>
+                </ul>
+              </nav>
+          
+              <nav class="flex items-center mt-2">
+                <h4 class="w-24 text-gray-400">Análise</h4>
+                <ul class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
+                  <li class="flex"><button type="button" onclick="marketing()" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">Analista de mercado</button></li>
+                  <li class="flex"><button type="button" onclick="mkt_texto()" class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">Identificar público e  gerar Texto publicitário</button></li>
+                </ul>
+              </nav>
+            </section>
+          </div>
+        </div>
+
+        <span id="loader">⏳</span>
+
+        <section id="results" class="mt-4"><!-- conteudo criado dinamicamente --></section>
+      </div>
+    </main>
+  </div>
+
+  <template id="output-template">
+    <article class="rounded-xl border-2 border-gray-100 bg-white mt-2">
+      <div class="flex justify-start">
+        <strong
+          class="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-green-600 px-3 py-1.5 text-white"
+        >
+          <span class="text-[10px] font-medium sm:text-xs" data-item="url">...</span>
+        </strong>
+      </div>
+      <div class="flex items-start gap-4 p-4 sm:p-6 lg:p-8">
+        <div class="text-sm text-gray-700">
+          <pre data-item="text" class="whitespace-break-spaces">...</pre>
+        </div>
+      </div>
+    </article>
+  </template>
+
+<script>
+  // Carregar produtos fake
+  function loadProducts() {
+    loader(true);
+
+    fetch('https://dummyjson.com/products?limit=5&skip=50')
+      .then(response => response.json())
+      .then(data => {
+        clearButtons();
+
+        data.products.forEach((product, index) => {
+          createButton(
+            product.title,
+            product.description,
+          );
+
+          if (index === 0) {
+            assignValueToInput(product.description);
+          }
+        });
+      })
+      .catch(error => console.error(error))
+      .finally(_ => loader(false));
+  }
+
+  function clearButtons () {
+    document.getElementById('btn-products').innerHTML = '';
+  }
+
+  function createButton(label, value) {
+    const button = document.createElement('button');
+
+    button.className = "inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative";
+    button.textContent = label;
+    button.onclick = () => assignValueToInput(value);
+
+    document.getElementById('btn-products').appendChild(button);
+  }
+
+  function assignValueToInput(value) {
+    document.getElementById('input').value = value;
+  }
+
+  window.onload = () => loadProducts();
+</script>
+
+<script>
+  // CHAMADAS DTA
+  function summary(language) {
+    call(
+      `./summary?language=${language}`,
+      {text: document.getElementById('input').value},
+    );
+  }
+
+  function gerar_conteudo(meio = 'email', language = 'português') {
+    call(
+      `./gerar_conteudo?meio=${meio}&language=${language}`,
+      {text: document.getElementById('input').value}
+    );
+  }
+
+  function marketing() {
+    call(
+      `./analista_marketing`,
+      {text: document.getElementById('input').value},
+    );
+  }
+
+  function mkt_texto() {
+    call(
+      `./analista_marketing_conteudo`,
+      {text: document.getElementById('input').value},
+    );
+  }
+
+  function call (url, body) {
+    loader(true);
+
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body),
+    })
+      .then(response => response.json())
+      .then(data => append_output(url, data?.['messages']))
+      .catch(error => console.error(error))
+      .finally(() => loader(false));
+  }
+
+  function append_output(url, text) {
+    if ("content" in document.createElement("template")) {
+      const results = document.getElementById("results");
+      const template = document.querySelector("#output-template");
+      const clone = template.content.cloneNode(true);
+
+      clone.querySelector('[data-item="url"]').textContent = url;
+      clone.querySelector('[data-item="text"]').textContent = text;
+
+      if (results.firstChild) {
+        results.insertBefore(clone, results.firstChild);
+      } else {
+        results.appendChild(clone);
+      }
+    } else {
+      console.error('Navegador não suporta recurso');
+    }
+  }
+
+  function loader (show = true) {
+    document.getElementById('loader').style.display = show ? 'inline-block' : 'none';
+  }
+</script>
+
+</body>
+</html>
