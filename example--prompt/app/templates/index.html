@@ -31,15 +31,16 @@
         }
       }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="h-full">
 
   <div class="min-h-full">
     <header class="bg-white shadow">
-      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
         <h1 class="text-3xl font-bold tracking-tight text-gray-900 flex align-items-center">
 
-          <img src="https://storage.googleapis.com/assets.dta.totvs.ai/logo/dta--anima.svg" width="28" class="inline-block mr-2">
+          <img src="https://storage.googleapis.com/assets.dta.totvs.ai/logo/dta--anima.svg" width="28" class="inline-block mr-3">
           
           <span class="text-primary">Demo DTA</span>
         </h1>
@@ -48,7 +49,7 @@
     <main>
       <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div class="space-y-12">
-          <div class="border-b border-gray-900/10 p-8 bg-white rounded-md">
+          <div class="border-b border-gray-900/10 p-8 bg-white rounded-xl">
             <h2 class="text-base font-semibold leading-7 text-gray-900">Produto</h2>
 
             <p>
@@ -114,24 +115,23 @@
       </div>
       <div class="flex items-start gap-4 p-4 sm:p-6 lg:p-8">
         <div class="text-sm text-gray-700">
-          <pre data-item="text" class="whitespace-break-spaces">...</pre>
+          <p data-item="text" class="whitespace-break-spaces">...</p>
         </div>
       </div>
     </article>
   </template>
 
 <script>
-  // Carregar produtos fake
   function loadProducts() {
     loader(true);
 
     fetch('https://dummyjson.com/products?limit=5&skip=50')
       .then(response => response.json())
       .then(data => {
-        clearButtons();
+        clearProductButtons();
 
         data.products.forEach((product, index) => {
-          createButton(
+          createProductButton(
             product.title,
             product.description,
           );
@@ -145,11 +145,11 @@
       .finally(_ => loader(false));
   }
 
-  function clearButtons () {
+  function clearProductButtons () {
     document.getElementById('btn-products').innerHTML = '';
   }
 
-  function createButton(label, value) {
+  function createProductButton(label, value) {
     const button = document.createElement('button');
 
     button.className = "inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative";
@@ -219,7 +219,9 @@
       const clone = template.content.cloneNode(true);
 
       clone.querySelector('[data-item="url"]').textContent = url;
-      clone.querySelector('[data-item="text"]').textContent = text;
+      // clone.querySelector('[data-item="text"]').textContent = text;
+
+      clone.querySelector('[data-item="text"]').innerHTML = marked.parse(text);
 
       if (results.firstChild) {
         results.insertBefore(clone, results.firstChild);
