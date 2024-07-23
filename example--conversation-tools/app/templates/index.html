@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo experiência conversacional</title>
+    <link rel="icon" href="https://space.dta.totvs.ai/favicon.svg" type="image/svg+xml">
+    <style>
+        html, body {
+            background: #333;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            box-sizing: border-box;
+            height: 100vh;
+            padding: 40px;
+        }
+    </style>
+
+</head>
+<body>
+
+<main>
+  <dta-chat float="false" disabled="true"></dta-chat>
+</main>
+
+<script>
+    function getChatElement() {
+        return document.querySelector('dta-chat');
+    }
+
+    window.addEventListener(
+        'dta-chat-ready',
+        (event) => {
+            const dtaChatApi = event.detail;
+            const el = getChatElement();
+
+            //EXPOSE AS GLOBAL
+            window.ui_api = dtaChatApi;
+
+            //API METHODS
+            ui_api.config(getConfig());
+
+            //API PROPS
+            ui_api.setAttribute('disabled', false);
+            ui_api.setAttribute('show', true);
+        },
+        {once: true},
+    );
+
+    function getConfig() {
+        const baseUrl = '.';
+
+        return {
+            apiInit: {
+                url: `${baseUrl}/welcome`,
+            },
+            apiMessage: {
+                url: `${baseUrl}/completion`,
+                method: 'POST',
+                sendHeaders: ['X-App-Custom'],
+            },
+            apiAudioTranscript: {
+                url: `${baseUrl}/audio`,
+                method: 'POST',
+            },
+            apiFeedback: {
+                url: `${baseUrl}/feedback`,
+                method: 'POST',
+            },
+            apiStruct: {
+                url: `${baseUrl}/struct`,
+                method: 'POST',
+            },
+            header_session_prefix: null,
+            header_thread_prefix: null,
+        };
+    }
+</script>
+<script defer src="https://assets.dta.totvs.ai/client/stable/dta_chat.js"></script>
+
+</body>
+</html>
