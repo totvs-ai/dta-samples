@@ -38,27 +38,13 @@ def welcome():
 @app.route("/completion", methods=["POST"])
 def completion():
     headers = request.headers
-    query_params = request.args
     body = request.get_json()
 
+    thread_id = headers.get("x-dta-thread", "")
     content = body.get("content", "")
-    agent_response = agent_run(input=content)
+    agent_response = agent_run(input=content, thread_id=thread_id)
 
     return Response(
         headers=agent_response["headers"] if "headers" in agent_response else None,
         response=json.dumps(agent_response["response"]),
     )
-
-
-# @app.route("/fake/data-x", methods=["POST"])
-# def fake_data_x():
-#     query_params = request.args
-
-#     response = prompt_analista_marketing_conteudo(
-#         text=request.get_json().get("text", ""),
-#         temperature=query_params.get("temperature", 0.5),
-#     )
-
-#     return {
-#         "messages": response.choices[0].message.content,
-#     }

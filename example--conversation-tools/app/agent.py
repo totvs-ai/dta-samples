@@ -1,5 +1,6 @@
 import operator
 import os
+from datetime import datetime
 from typing import Annotated, Sequence, TypedDict
 
 from langchain_core.messages import (
@@ -12,7 +13,7 @@ from langchain_core.messages import (
 from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 
-from .tools import tools_list
+from .tools_apibrasil import tools_list as apibrasil_tools
 
 DTA_PROXY_URL = "https://proxy.dta.totvs.ai"
 DTA_PROXY_KEY = os.environ.get("DTA_PROXY_KEY")
@@ -20,9 +21,9 @@ DTA_MONITOR_PUBLIC_KEY = os.environ.get("DTA_MONITOR_PUBLIC_KEY")
 DTA_MONITOR_SECRET_KEY = os.environ.get("DTA_MONITOR_SECRET_KEY")
 
 
-def agent_run(input: str):
+def agent_run(input: str, thread_id: str):
 
-    agent = _create_agent(tools_list)
+    agent = _create_agent(apibrasil_tools)
 
     messages = [HumanMessage(content=input)]
     thread = {"configurable": {"thread_id": "1"}}
@@ -53,7 +54,7 @@ def agent_run(input: str):
 
     return {
         "headers": {
-            "X-dta-thread": "myvalue",
+            "X-dta-thread": thread_id,
         },
         "response": {
             "content": final_message,
@@ -63,21 +64,25 @@ def agent_run(input: str):
 
 
 def _create_agent(tools):
+    now = datetime.now()
+
     model = ChatOpenAI(
         openai_api_base=DTA_PROXY_URL,
         openai_api_key=DTA_PROXY_KEY,
         model="gpt4o-mini",
         temperature=0.2,
-    ).bind_tools(tools)
+    )
 
-    system_prompt = """
+    system_prompt = f"""
       Seja um assistente útil para consulta de informações.
+      Seja objetivo, e não ofereça informações que não possam ser obtidas pelas tools.
+      Não responda nada sem uso de tools.
 
       Contexto:
       - data/hora atual é {now}
     """
 
-    return Agent(model, tools_list, system=system_prompt)
+    return Agent(model, tools, system=system_prompt)
 
 
 class AgentState(TypedDict):

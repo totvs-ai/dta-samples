@@ -17,6 +17,17 @@
             box-sizing: border-box;
             height: 100vh;
             padding: 40px;
+            display: grid;
+            grid-template-columns: auto 400px;
+            gap: 40px;
+        }
+
+        section {
+          overflow: auto;
+        }
+
+        aside > p {
+          margin-bottom: 20px;
         }
     </style>
 
@@ -24,7 +35,23 @@
 <body>
 
 <main>
-  <dta-chat float="false" disabled="true"></dta-chat>
+  <section>
+    <dta-chat float="false" disabled="true"></dta-chat>
+  </section>
+  <aside>
+    <p>
+      <dta-chat-hints hints='["Qual o banco com código 237", "Qual o código do banco Itaú"]'></dta-chat-hints>
+    </p>
+    <p>
+      <dta-chat-hints hints='["De onde é o CEP 75113135", "cep 025511", "30494170 zip code"]'></dta-chat-hints>
+    </p>
+    <p>
+      <dta-chat-hints hints='["informações sobre Santa Rita do Sapucaí", "como está o tempo em São Paulo?", "previsão para os próximos dias em BH"]'></dta-chat-hints>
+    </p>
+    <p>
+      <dta-chat-hints hints='["qual o próximo feriado?", "quantos feriados tem este ano?", "qual mês tem mais feriados?"]'></dta-chat-hints>
+    </p>
+  </aside>
 </main>
 
 <script>
