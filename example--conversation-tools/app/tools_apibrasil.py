@@ -1,5 +1,13 @@
-from langchain_core.tools import tool
+from typing import Optional
+
 import requests
+from langchain_core.tools import tool
+
+"""
+
+APIS from https://brasilapi.com.br/
+
+"""
 
 
 @tool
