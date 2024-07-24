@@ -171,14 +171,14 @@
   // CHAMADAS DTA
   function summary(language) {
     call(
-      `./summary?language=${language}`,
+      `./resumo?language=${language}`,
       {text: document.getElementById('input').value},
     );
   }
 
   function gerar_conteudo(meio = 'email', language = 'português') {
     call(
-      `./gerar_conteudo?meio=${meio}&language=${language}`,
+      `./generate_content?meio=${meio}&language=${language}`,
       {text: document.getElementById('input').value}
     );
   }

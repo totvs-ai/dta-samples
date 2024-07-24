@@ -12,7 +12,7 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/summary", methods=["POST"])
+@app.route("/resumo", methods=["POST"])
 def summary():
     query_params = request.args
 
@@ -27,7 +27,7 @@ def summary():
     }
 
 
-@app.route("/gerar_conteudo", methods=["POST"])
+@app.route("/generate_content", methods=["POST"])
 def gerar_conteudo():
     query_params = request.args
 
