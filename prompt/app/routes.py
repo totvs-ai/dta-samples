@@ -1,4 +1,4 @@
-from flask import render_template, current_app as app, request
+from flask import Blueprint, render_template, request
 from .prompts import (
     prompt_summary,
     prompt_material,
@@ -6,13 +6,15 @@ from .prompts import (
     prompt_analista_marketing_conteudo,
 )
 
+prompt = Blueprint("prompt", __name__)
 
-@app.route("/")
+
+@prompt.route("/")
 def home():
     return render_template("index.html")
 
 
-@app.route("/resumo", methods=["POST"])
+@prompt.route("/resumo", methods=["POST"])
 def summary():
     query_params = request.args
 
@@ -27,7 +29,7 @@ def summary():
     }
 
 
-@app.route("/generate_content", methods=["POST"])
+@prompt.route("/generate_content", methods=["POST"])
 def gerar_conteudo():
     query_params = request.args
 
@@ -43,7 +45,7 @@ def gerar_conteudo():
     }
 
 
-@app.route("/analista_marketing", methods=["POST"])
+@prompt.route("/analista_marketing", methods=["POST"])
 def analista_marketing():
     query_params = request.args
 
@@ -57,7 +59,7 @@ def analista_marketing():
     }
 
 
-@app.route("/analista_marketing_conteudo", methods=["POST"])
+@prompt.route("/analista_marketing_conteudo", methods=["POST"])
 def analista_marketing_conteudo():
     query_params = request.args
 
