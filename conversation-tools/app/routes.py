@@ -14,10 +14,10 @@ def welcome():
         "data": {
             "suggestions": [
                 {
-                    "label": "Quais contratos estão pendente?",
+                    "label": "Previsão do tempo em São Paulo",
                 },
                 {
-                    "label": "O que tenho para hoje?",
+                    "label": "Próximo feriado a partir de hoje",
                 },
             ]
         },

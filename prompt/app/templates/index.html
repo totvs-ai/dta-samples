@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo uso de prompt</title>
+    <title>Demo</title>
     <link rel="icon" href="https://space.dta.totvs.ai/favicon.svg" type="image/svg+xml">
     <style>
         @keyframes spin {
@@ -37,13 +37,11 @@
 <body class="h-full">
 
   <div class="min-h-full">
-    <header class="bg-white shadow">
+    <header class="bg-zinc-700 shadow">
       <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
         <h1 class="text-3xl font-bold tracking-tight text-gray-900 flex align-items-center">
-
-          <img src="https://storage.googleapis.com/assets.dta.totvs.ai/logo/dta--anima.svg" width="28" class="inline-block mr-3">
-          
-          <span class="text-primary">Demo DTA</span>
+          <span class="text-white">Demo gerador de conteúdo</span>
+          <!-- <span class="text-primary">Demo gerador de conteúdo</span> -->
         </h1>
       </div>
     </header>
@@ -124,26 +122,41 @@
 
 <script>
   function loadProducts() {
-    loader(true);
+    const fakeProducts = [
+      {
+        title: "EcoBottle 500ml",
+        description: "Garrafa reutilizável feita de material biodegradável, ideal para manter bebidas quentes ou frias por horas.",
+      },
+      {
+        title: "SmartLight",
+        description: "Lâmpada inteligente controlada por aplicativo, ajustável em cor e intensidade, compatível com assistentes virtuais.",
+      },
+      {
+        title: "ProFit Tracker",
+        description: "Pulseira fitness com monitoramento de batimentos cardíacos, passos, calorias e qualidade do sono, com sincronização via Bluetooth.",
+      },
+      {
+        title: "HomeChef 3-in-1",
+        description: "Aparelho de cozinha multifuncional que funciona como panela de pressão, slow cooker e fritadeira sem óleo.",
+      },
+      {
+        title: "UltraSound Earbuds",
+        description: "Fones de ouvido sem fio com cancelamento de ruído ativo, bateria de longa duração e resistência à água, ideal para uso diário e esportes.",
+      },
+    ];
 
-    fetch('https://dummyjson.com/products?limit=5&skip=50')
-      .then(response => response.json())
-      .then(data => {
-        clearProductButtons();
+     clearProductButtons();
 
-        data.products.forEach((product, index) => {
-          createProductButton(
-            product.title,
-            product.description,
-          );
+     fakeProducts.forEach((product, index) => {
+      createProductButton(
+        product.title,
+        product.description,
+      );
 
-          if (index === 0) {
-            assignValueToInput(product.description);
-          }
-        });
-      })
-      .catch(error => console.error(error))
-      .finally(_ => loader(false));
+      if (index === 0) {
+        assignValueToInput(product.description);
+      }
+    });
   }
 
   function clearProductButtons () {
