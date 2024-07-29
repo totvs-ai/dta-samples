@@ -1,6 +1,7 @@
 # DTA Samples
-Esse repositório tem como objetivo disponibilizar diferentes soluções com I.A. utilizando integração com a plataforma **DTA**. Os exemplos disponibilizados aqui possuem também integração com o **DTA Monitor** a fim de melhorar a observabilidade da sua aplicação e facilitar na sua jornada de desenvolvimento. Para reproduzir esses exemplos, você precisará de uma chave válida no DTA.
-> Você pode acessar o DTA [aqui](http://dta.totvs.ai/).
+Esse repositório tem como objetivo disponibilizar diferentes soluções com I.A. utilizando integração com a plataforma **DTA**. Os exemplos disponibilizados aqui possuem também integração com o **DTA Monitor** a fim de melhorar a observabilidade da sua aplicação e facilitar a sua jornada de desenvolvimento. 
+
+Para reproduzir esses exemplos, você precisará de uma chave válida no DTA. Você pode acessar o DTA [aqui](http://dta.totvs.ai/).
 
 > Entre em contato com o time IDeIA para mais informações ou liberação de acessos.
 
@@ -11,11 +12,11 @@ O **DTA - Digital Trusted Advisor -** é o nome oficial da plataforma que **cons
 
  - Python >= 3.10.0
  - [Poetry](https://python-poetry.org/) >= 1.0.0
- > Você precisará de uma chave válida no DTA. Acesse no [DTA UI](http://dta.totvs.ai/) para gerar sua chave.
+> O Poetry pode ser instalado facilmente utilizando o comando: `pip install poetry`
+ 
+ Você também precisará de uma chave válida no DTA. Acesse no [DTA UI](http://dta.totvs.ai/) para gerar sua chave.
 
- > O Poetry pode ser instalado facilmente utilizando o comando: `pip install poetry`
-
-### Recommendations
+### Recomendações
 *  [ASDF](https://asdf-vm.com/#/core-manage-asdf?id=install) - para instalar e gerenciar diferentes versões do Python
 *  [Direnv](https://github.com/asdf-community/asdf-direnv) - para gerenciar automaticamente múltiplos ambientes virtuais
 
@@ -27,7 +28,7 @@ O repositório possui duas aplicações de exemplo de soluções com A.I. utiliz
 <img width="1068" alt="image" src="https://github.com/user-attachments/assets/21af445d-ff34-4ce6-bf28-1a4427e66a20">
 
 2.  **Aplicação "prompt":**
-A aplicação "prompt" é uma ferramenta que gera textos de marketing institucionais para determinado produto. Nela é possível selecionar alguns produtos de exemplo, o idioma do texto a ser gerado, a finalidade do texto (texto para um email de divulgação ou para uma postagem em alguma rede social, por exemplo) e realizar uma análise de mercado do público alvo. Esse exemplo simples de utilização de prompts pré definidos para solicitar ao DTA a geração do texto com base em diferentes parâmetros.
+A aplicação "prompt" é uma ferramenta que gera textos de marketing institucionais para determinado produto. Nela é possível selecionar alguns produtos de exemplo, o idioma do texto a ser gerado, a finalidade do texto (texto para um email de divulgação ou para uma postagem em alguma rede social, por exemplo) e realizar uma análise de mercado do público alvo. Esse exemplo simples utiliza prompts pré definidos para solicitar ao DTA a geração do texto com base em diferentes parâmetros.
 <img width="1108" alt="image" src="https://github.com/user-attachments/assets/681f2720-bc0e-47f0-ac45-6596f6a15f9c">
 
 
@@ -53,15 +54,15 @@ A aplicação "prompt" é uma ferramenta que gera textos de marketing institucio
 	```shell
 	pip install poetry
 	```
-5. Instale as dependencias com:
+5. Instale as dependências com:
 	```shell
 	poetry install
 	```
 
 ## Execução
-Para executar a aplicação após a instalação das dependências, crie um arquivo chamado `.env` dentro da pasta do APP e copie o conteudo do arquivo `.env-template` para dentro dele `.env`, e então adicione sua chave do DTA na variavel `DTA_PROXY_KEY`. Você também pode colocar a sua Secret Key e Public Key gerada no DTA Monitor para obter uma observabilidade detalhada das suas interações com os APP.
+Para executar a aplicação após a instalação das dependências, crie um arquivo chamado `.env` dentro da pasta do APP e copie o conteúdo do arquivo `.env-template` para dentro dele. Então, adicione sua chave do DTA na variável `DTA_PROXY_KEY`. No arquivo `.env` você também pode informar a sua **Secret Key** e **Public Key** gerada no DTA Monitor para obter uma observabilidade detalhada das suas interações com os APP.
 
-Com as dependencias instalad e o seu arquivo `.env` devidamente criado, basta rodar o seguinte comando dentro da pasta do APP desejado para executá-lo:
+Com as dependências instaladas e o seu arquivo `.env` devidamente criado, rode o seguinte comando dentro da pasta do APP desejado para executar o APP desejado:
 ```shell
 python run.py
 ```
