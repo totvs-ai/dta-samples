@@ -14,7 +14,7 @@ O **DTA - Digital Trusted Advisor -** é o nome oficial da plataforma que **cons
  - [Poetry](https://python-poetry.org/) >= 1.0.0
 > O Poetry pode ser instalado facilmente utilizando o comando: `pip install poetry`
  
- Você também precisará de uma chave válida no DTA. Acesse no [DTA UI](http://dta.totvs.ai/) para gerar sua chave.
+ Você também precisará de uma chave válida no DTA. Acesse o [DTA UI](http://dta.totvs.ai/) para gerar sua chave.
 
 ### Recomendações
 *  [ASDF](https://asdf-vm.com/#/core-manage-asdf?id=install) - para instalar e gerenciar diferentes versões do Python
