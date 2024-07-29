@@ -1,14 +1,16 @@
-from flask import render_template, current_app as app, request, Response
+from flask import Blueprint, render_template, Response, request
 from .run import agent_run, register_score, audio_transcription
 import json
 
+conversation_tools = Blueprint("conversation_tools", __name__)
 
-@app.route("/")
+
+@conversation_tools.route("/")
 def home():
     return render_template("index.html")
 
 
-@app.route("/welcome")
+@conversation_tools.route("/welcome")
 def welcome():
     initial_message = {
         "data": {
@@ -35,7 +37,7 @@ def welcome():
     }
 
 
-@app.route("/completion", methods=["POST"])
+@conversation_tools.route("/completion", methods=["POST"])
 def completion():
     headers = request.headers
     body = request.get_json()
@@ -56,7 +58,7 @@ def completion():
     )
 
 
-@app.route("/feedback", methods=["POST"])
+@conversation_tools.route("/feedback", methods=["POST"])
 def feedback():
     headers = request.headers
     body = request.get_json()
@@ -79,7 +81,7 @@ def feedback():
     )
 
 
-@app.route("/audio", methods=["POST"])
+@conversation_tools.route("/audio", methods=["POST"])
 def audio():
     headers = request.headers
     body = request.get_json()
