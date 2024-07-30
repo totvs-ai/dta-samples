@@ -62,7 +62,7 @@ A aplicação "prompt" é uma ferramenta que gera textos de marketing institucio
 ## Execução
 Para executar a aplicação após a instalação das dependências, crie um arquivo chamado `.env` dentro da pasta do APP e copie o conteúdo do arquivo `.env-template` para dentro dele. Então, adicione sua chave do DTA na variável `DTA_PROXY_KEY`. No arquivo `.env` você também pode informar a sua **Secret Key** e **Public Key** gerada no DTA Monitor para obter uma observabilidade detalhada das suas interações com os APP.
 
-Com as dependências instaladas e o seu arquivo `.env` devidamente criado, rode o seguinte comando dentro da pasta do APP desejado para executar o APP desejado:
+Com as dependências instaladas e o seu arquivo `.env` devidamente criado, rode o seguinte comando dentro da pasta do APP desejado para executá-lo:
 ```shell
 python run.py
 ```
