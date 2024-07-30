@@ -1,7 +1,7 @@
 # DTA Samples
 Esse repositório tem como objetivo disponibilizar diferentes soluções com I.A. utilizando integração com a plataforma **DTA**. Os exemplos disponibilizados aqui possuem também integração com o **DTA Monitor** a fim de melhorar a observabilidade da sua aplicação e facilitar a sua jornada de desenvolvimento. 
 
-Para reproduzir esses exemplos, você precisará de uma chave válida no DTA. Você pode acessar o DTA [aqui](http://dta.totvs.ai/).
+Para reproduzir esses exemplos, você precisará de uma chave válida no DTA. Você pode acessar o DTA [aqui](http://space.dta.totvs.ai/).
 
 > Entre em contato com o time IDeIA para mais informações ou liberação de acessos.
 
@@ -14,7 +14,7 @@ O **DTA - Digital Trusted Advisor -** é o nome oficial da plataforma que **cons
  - [Poetry](https://python-poetry.org/) >= 1.0.0
 > O Poetry pode ser instalado facilmente utilizando o comando: `pip install poetry`
  
- Você também precisará de uma chave válida no DTA. Acesse o [DTA UI](http://dta.totvs.ai/) para gerar sua chave.
+ Você também precisará de uma chave válida no DTA. Acesse o [DTA UI](http://space.dta.totvs.ai/) para gerar sua chave.
 
 ### Recomendações
 *  [ASDF](https://asdf-vm.com/#/core-manage-asdf?id=install) - para instalar e gerenciar diferentes versões do Python
