@@ -39,15 +39,15 @@ A aplicação "prompt" é uma ferramenta que gera textos de marketing institucio
 	git clone git@github.com:totvs-ai/dta-samples.git
 	```
  2. Acesse o projeto e então a pasta do app que deseja executar (`conversation-tools` ou `prompt`)
- 3. Caso não esteja utilizando [Direnv](https://github.com/asdf-community/asdf-direnv), ative seu ambiente virtual com:
+ 3. Caso não esteja utilizando [Direnv](https://github.com/asdf-community/asdf-direnv), ative seu ambiente virtual Python com:
 	 - **Linux/MacOS:**
 		```shell
-		pyhton -m venv .venv
+		python -m venv .venv
 		source .venv/bin/activate
 		```
 	- **Windows:**
 		```shell
-		pyhton -m venv .venv
+		python -m venv .venv
 		source .venv/Scripts/activate
 		```
 4. Instale o Poetry, caso não possua:
