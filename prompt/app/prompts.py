@@ -19,7 +19,7 @@ langfuse_context.configure(
 @observe()
 def prompt_summary(temperature: float, text: str, language: str):
     return __call_chat_model(
-        model="gpt4o-mini",
+        model="gpt-4o-mini",
         temperature=temperature,
         messages=[
             {
@@ -34,7 +34,7 @@ def prompt_summary(temperature: float, text: str, language: str):
 @observe()
 def prompt_material(temperature: float, text: str, language: str, meio: str):
     return __call_chat_model(
-        model="gpt4o-mini",
+        model="gpt-4o-mini",
         temperature=temperature,
         messages=[
             {
@@ -49,7 +49,7 @@ def prompt_material(temperature: float, text: str, language: str, meio: str):
 @observe()
 def prompt_analista_marketing(temperature: float, text: str):
     return __call_chat_model(
-        model="gpt4o-mini",
+        model="gpt-4o-mini",
         temperature=temperature,
         messages=[
             {
@@ -65,7 +65,7 @@ def prompt_analista_marketing(temperature: float, text: str):
 def prompt_analista_marketing_conteudo(temperature: float, text: str):
     def prompt_marketing_target(temperature: float, text: str):
         return __call_chat_model(
-            model="gpt4o-mini",
+            model="gpt-4o-mini",
             temperature=temperature,
             messages=[
                 {
@@ -78,7 +78,7 @@ def prompt_analista_marketing_conteudo(temperature: float, text: str):
 
     def prompt_marketing_redator(temperature: float, text: str, instructions: str):
         return __call_chat_model(
-            model="gpt4o-mini",
+            model="gpt-4o-mini",
             temperature=temperature,
             messages=[
                 {
@@ -98,7 +98,7 @@ def prompt_analista_marketing_conteudo(temperature: float, text: str):
     )
 
 
-def __call_chat_model(model="gpt4o-mini", temperature=0.2, messages=[]):
+def __call_chat_model(model="gpt-4o-mini", temperature=0.2, messages=[]):
     client = openai.OpenAI(
         base_url="https://proxy.dta.totvs.ai",
         api_key=DTA_PROXY_KEY,

@@ -27,7 +27,7 @@ class Agent:
             openai_api_base=DTA_PROXY_URL,
             openai_api_key=DTA_PROXY_KEY,
             # model="gpt-4o",
-            model="gpt4o-mini",
+            model="gpt-4o-mini",
             temperature=0.2,
         )
 
