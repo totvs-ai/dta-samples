@@ -25,11 +25,14 @@ O repositório possui duas aplicações de exemplo de soluções com A.I. utiliz
 
 1.  **Aplicação "conversation-tools":**
 É um cliente conversacional que é capaz de realizar chamadas à diferentes endpoints para responder determinada requisição do usuário. Esse exemplo utiliza a biblioteca [LangGraph](https://langchain-ai.github.io/langgraph/)🦜🕸️, nela é possível definir endpoints de serviços externos para "resolver" um requisição que precisa de informações complementares ou executar uma ação que um modelo generativo não conseguiria sozinho. Como por exemplo: previsão de tempo, consulta de estoque de determinado produto, envio de e-mails, etc.
-<img width="1068" alt="image" src="https://github.com/user-attachments/assets/21af445d-ff34-4ce6-bf28-1a4427e66a20">
+
+https://github.com/user-attachments/assets/0a8ba1ba-3a03-429a-b922-a33bf3e26de6
+
+
 
 2.  **Aplicação "prompt":**
 A aplicação "prompt" é uma ferramenta que gera textos de marketing institucionais para determinado produto. Nela é possível selecionar alguns produtos de exemplo, o idioma do texto a ser gerado, a finalidade do texto (texto para um email de divulgação ou para uma postagem em alguma rede social, por exemplo) e realizar uma análise de mercado do público alvo. Esse exemplo simples utiliza prompts pré definidos para solicitar ao DTA a geração do texto com base em diferentes parâmetros.
-<img width="1108" alt="image" src="https://github.com/user-attachments/assets/681f2720-bc0e-47f0-ac45-6596f6a15f9c">
+![image](https://github.com/user-attachments/assets/cc5e1d56-1a5f-46d5-88bc-b9aab0dac003)
 
 
 ## Instalação
