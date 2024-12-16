@@ -1,8 +1,11 @@
 from flask import Blueprint, render_template, Response, request
 from .run import agent_run, register_score, audio_transcription
 import json
+from flask_cors import CORS
 
 conversation_tools = Blueprint("conversation_tools", __name__)
+
+CORS(conversation_tools, resources={r"/*": {"origins": "*"}})
 
 
 @conversation_tools.route("/")

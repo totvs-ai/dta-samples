@@ -10,7 +10,7 @@ def agent_run(input: str, session_id: str, thread_id: str):
     and register each step on DTA Monitor
     """
     from .agent import Agent, AgentState
-    from .tools_apibrasil import tools_list
+    from .tools import tools_list
 
     def _extract_steps(response: List[AgentState]) -> List[dict]:
         steps = []

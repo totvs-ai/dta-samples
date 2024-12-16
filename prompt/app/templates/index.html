@@ -233,8 +233,6 @@
       const clone = template.content.cloneNode(true);
 
       clone.querySelector('[data-item="url"]').textContent = url;
-      // clone.querySelector('[data-item="text"]').textContent = text;
-
       clone.querySelector('[data-item="text"]').innerHTML = marked.parse(text);
 
       if (results.firstChild) {
